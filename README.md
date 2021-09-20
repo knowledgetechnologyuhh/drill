@@ -53,7 +53,7 @@ properties:
 ```
 export COMET_KEY=<YOUR COMET API KEY>
 export COMET_WORKSPACE=<YOUR WORSKPACE NAME>
-export COMET_PROJ_NAME=cosmell_benchmarks
+export COMET_PROJ_NAME=drill_experiments
 ```
 
 ## Training
