@@ -11,12 +11,12 @@ This is the official code for our paper, presented at
   pages        = "409–-420",
   month        = "September",
   year         = "2021",
-  publisher    = "Springer",
+  publisher    = "Springer International Publishing",
   series       = "LCNS"
   editor       = "Igor Farkaš, Paolo Masulli, Sebastian Otte, Stefan Wermter",
   key          = "ahrens2021drill",
   doi          = "10.1007/978-3-030-86340-1_33",
-  url          = "https://www2.informatik.uni-hamburg.de/wtm/publications/2021/AAW21/DRILL_Paper.pdf"
+  url          = "https://link.springer.com/chapter/10.1007/978-3-030-86340-1_33"
 }
 ```
 
@@ -95,4 +95,14 @@ python3 train.py --hyperparam_cfg_file configs/hyperopt.config --cfg_file config
 * When specifying `--learner drill`, this defaults to DRILL_C (concatenation).
 * To run a training session on the CPU, simply remove
   `--gpu 0` from the arguments. You can specify the gpu to be used by changing the `--gpu` id. Parallel GPU training is
-  not supported due to the **higher** library for meta-learning. 
+  not supported due to the **higher** library for meta-learning.
+  
+## Attribution
+
+This work relies on several packages and code bases which we have modified to fit our framework. 
+If any attributions are missing, please notify us by [Email](mailto:kyra.ahrens@uni-hamburg.de?subject=[GitHub]%20Missing%20DRILL%20Attribution). 
+The repository on which the paper [Meta-Learning with Sparse Experience Replay for Lifelong Language Learning](https://github.com/Nithin-Holla/MetaLifelongLanguage) is based has a substantial portion of its content included in this work.
+
+## Acknowledgement
+
+This work was partially supported by the German Research Foundation DFG under project [CML (TRR 169)](https://www.crossmodal-learning.org/).
