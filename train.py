@@ -1,5 +1,9 @@
 import os
 import time
+import logging
+import random
+from argparse import ArgumentParser
+import json
 
 # Enable comet logging
 try:
@@ -11,12 +15,6 @@ try:
     COMET_PROJ_NAME = os.environ["COMET_PROJ_NAME"]
 except:
     online_logging = False
-
-import logging
-import os
-import random
-from argparse import ArgumentParser
-import json
 
 import numpy as np
 import torch
