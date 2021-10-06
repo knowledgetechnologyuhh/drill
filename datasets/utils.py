@@ -93,8 +93,7 @@ def offset_labels(dataset):
 
 def download_uci_sentiment(dir_path, test_size=0.3):
     """
-    Loads IRIS dataset using sklearn function, scales features to range (0, 1), splits into train/test and
-    saves it as .csv files
+    Loads UCI Sentiment Labelled Sentences database, splits into train/test and saves it as .csv files
     :param dir_path: Path to target directory where train and test files will be stored.
     :param test_size: If float, should be between 0.0 and 1.0 and represent the proportion of the dataset to include
     in the test split. If int, represents the absolute number of test samples.
