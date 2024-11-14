@@ -25,11 +25,12 @@ This is the official code for our paper, presented at
 
 * python >= 3.5
 * pytorch >= 1.15
+* `wget` has to be installed on your OS for the data download
 
 Navigate in your terminal to the project root, then install all required packages:
 
 ```
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 Next, download all text classification datasets:
