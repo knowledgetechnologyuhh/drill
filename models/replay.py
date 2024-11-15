@@ -7,10 +7,10 @@ import numpy as np
 from torch.utils import data
 from transformers import AdamW
 
-import datasets
+import dataset
 import models.utils
 from models.base_models import BertBase, EpisodicMemory
-from datasets.utils import ConcatDataset
+from dataset.utils import ConcatDataset
 
 logging.basicConfig(level='INFO', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger('Replay-Log')
@@ -136,7 +136,7 @@ class Replay(object):
         batch_size = kwargs.get('batch_size')
         train_dataset = ConcatDataset(train_datasets)
         train_dataloader = data.DataLoader(train_dataset, batch_size=batch_size, shuffle=False,
-                                           collate_fn=datasets.utils.batch_encode)
+                                           collate_fn=dataset.utils.batch_encode)
         self.train(dataloader=train_dataloader, dataset=train_dataset, epochs=epochs, log_freq=log_freq)
 
     def testing(self, test_datasets, **kwargs):
@@ -145,7 +145,7 @@ class Replay(object):
         for test_id, test_dataset in enumerate(test_datasets):
             logger.info('Testing on {}'.format(test_dataset.__class__.__name__))
             test_dataloader = data.DataLoader(test_dataset, batch_size=batch_size, shuffle=False,
-                                              collate_fn=datasets.utils.batch_encode)
+                                              collate_fn=dataset.utils.batch_encode)
             acc, prec, rec, f1 = self.evaluate(dataloader=test_dataloader, test_id=test_id)
             accuracies.append(acc)
             precisions.append(prec)

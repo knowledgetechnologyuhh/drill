@@ -9,10 +9,10 @@ from torch import nn, optim
 from torch.utils import data
 from transformers import AdamW
 
-import datasets.utils
+import dataset.utils
 import models.utils
 from models.base_models import EpisodicMemory, BertNM, BertPN
-from datasets.utils import ConcatDataset
+from dataset.utils import ConcatDataset
 
 logging.basicConfig(level='INFO', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger('ANML-Log')
@@ -129,7 +129,7 @@ class ANML:
 
         concat_dataset = ConcatDataset(train_datasets)
         train_dataloader = iter(data.DataLoader(concat_dataset, batch_size=batch_size, shuffle=False,
-                                                collate_fn=datasets.utils.batch_encode))
+                                                collate_fn=dataset.utils.batch_encode))
 
         episode_id = 0
         while True:
@@ -254,7 +254,7 @@ class ANML:
         for test_dataset in test_datasets:
             logger.info('Testing on {}'.format(test_dataset.__class__.__name__))
             test_dataloader = data.DataLoader(test_dataset, batch_size=batch_size, shuffle=False,
-                                              collate_fn=datasets.utils.batch_encode)
+                                              collate_fn=dataset.utils.batch_encode)
             acc, prec, rec, f1 = self.evaluate(dataloader=test_dataloader, updates=updates, batch_size=batch_size)
             accuracies.append(acc)
             precisions.append(prec)

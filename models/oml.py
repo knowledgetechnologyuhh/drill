@@ -13,7 +13,7 @@ from transformers import AdamW
 
 import models.utils
 from models.base_models import BertRLN, LinearPLN, EpisodicMemory
-from datasets.utils import ConcatDataset
+from dataset.utils import ConcatDataset
 
 logging.basicConfig(level='INFO', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger('OML-Log')

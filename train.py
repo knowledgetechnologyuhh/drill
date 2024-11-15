@@ -19,7 +19,7 @@ except:
 import numpy as np
 import torch
 
-import datasets.utils
+import dataset.utils
 import models.utils
 
 logging.basicConfig(level='INFO', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -160,13 +160,13 @@ if __name__ == '__main__':
             # Load train and test datasets
             logger.info('Loading all datasets...')
             train_datasets, test_datasets, n_classes = [], [], 0
-            for ds_idx, dataset in enumerate(args.datasets):
-                train_dataset, test_dataset = datasets.utils.load_dataset(base_path, dataset, args.reduce_train[ds_idx],
-                                                                          args.reduce_test[ds_idx])
+            for ds_idx, ds in enumerate(args.datasets):
+                train_dataset, test_dataset = dataset.utils.load_dataset(base_path, ds, args.reduce_train[ds_idx],
+                                                                         args.reduce_test[ds_idx])
                 logger.info('Loaded {}.'.format(train_dataset.__class__.__name__))
                 n_classes += train_dataset.n_classes
-                datasets.utils.offset_labels(train_dataset)
-                datasets.utils.offset_labels(test_dataset)
+                dataset.utils.offset_labels(train_dataset)
+                dataset.utils.offset_labels(test_dataset)
                 train_datasets.append(train_dataset)
                 test_datasets.append(test_dataset)
             n_classes = n_classes - 5 if args.order else n_classes

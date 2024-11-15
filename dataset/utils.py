@@ -4,12 +4,14 @@ from urllib.request import urlopen
 from io import BytesIO
 from zipfile import ZipFile
 import bisect
-
+import csv
 from torch.utils.data.dataset import ConcatDataset as _ConcatDataset
 import pandas as pd
 from sklearn import model_selection
+import datasets as ds
 
-from datasets.cls_dataset import AGNewsDataset, AmazonDataset, DBPediaDataset, YahooDataset, YelpDataset, \
+
+from dataset.cls_dataset import AGNewsDataset, AmazonDataset, DBPediaDataset, YahooDataset, YelpDataset, \
     AmazonShortDataset, ImdbShortDataset, YelpShortDataset
 
 
@@ -38,8 +40,13 @@ def load_dataset(base_path, name, reduce_train, reduce_test):
         train = YelpDataset(os.path.join(base_path, 'data/yelp_review_full_csv/train.csv'), reduce_train)
         test = YelpDataset(os.path.join(base_path, 'data/yelp_review_full_csv/test.csv'), reduce_test)
     elif name.upper() == 'DBPEDIA':
-        train = DBPediaDataset(os.path.join(base_path, 'data/dbpedia_csv/train.csv'), reduce_train)
-        test = DBPediaDataset(os.path.join(base_path, 'data/dbpedia_csv/test.csv'), reduce_test)
+        if not os.path.exists(os.path.join(base_path, 'dbpedia')):
+            train_ds = ds.load_dataset("fancyzhx/dbpedia_14", split="train")
+            train_ds.to_csv("data/dbpedia/train.csv", index=False)
+            test_ds = ds.load_dataset("fancyzhx/dbpedia_14", split="test")
+            test_ds.to_csv("data/dbpedia/train.csv", index=False)
+        train = DBPediaDataset(os.path.join(base_path, 'data/dbpedia/train.csv'), reduce_train)
+        test = DBPediaDataset(os.path.join(base_path, 'data/dbpedia/test.csv'), reduce_test)
     elif name.upper() == 'YAHOO':
         train = YahooDataset(os.path.join(base_path, 'data/yahoo_answers_csv/train.csv'), reduce_train)
         test = YahooDataset(os.path.join(base_path, 'data/yahoo_answers_csv/test.csv'), reduce_test)
